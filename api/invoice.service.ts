@@ -1,4 +1,18 @@
-const invoices = [
+type InvoiceStatus = 'paid' | 'pending';
+interface Invoice {
+    id: number;
+    amount: number;
+    status: InvoiceStatus;
+    issueDate: string;
+    dueDate: string;
+    customer: {
+        id: number;
+        name: string;
+        email: string;
+    } 
+}
+
+const invoices: Invoice[] = [
     {
         id: 1,
         amount: 100,
@@ -6,6 +20,7 @@ const invoices = [
         issueDate: '07-10-2026',
         dueDate: '05-11-2026',
         customer: {
+            id: 1,
             name: 'Construtora Meridiano',
             email: 'contato@meridiano.com.br'
         }
@@ -17,6 +32,7 @@ const invoices = [
         issueDate: '02-08-2026',
         dueDate: '02-12-2026',
         customer: {
+            id: 2,
             name: 'Telebras',
             email: 'contato@telebras.com.br'
         }
@@ -28,6 +44,7 @@ const invoices = [
         issueDate: '07-10-2025',
         dueDate: '07-10-2026',
         customer: {
+            id: 3,
             name: 'Petobras',
             email: 'contato@Petobras.com.br'
         }
