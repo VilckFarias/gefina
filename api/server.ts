@@ -1,5 +1,6 @@
 import express from "express";
 import InvoiceRouter from "./invoice.routes.ts";
+import {join} from 'node:path';
 
 const app = express();
 
@@ -13,6 +14,7 @@ app.get("/api/health", (_request, response) => {
 });
 
 app.use("/api/invoices", InvoiceRouter);
+app.use(express.static(join(import.meta.dirname, "..", "./web", "./dist")));
 
 app.use((_request, response) => {
   response.status(404).json({
@@ -22,4 +24,6 @@ app.use((_request, response) => {
     }
   });
 });
-app.listen(3000);
+
+process.loadEnvFile('./.env')
+app.listen(process.env.PORT);
